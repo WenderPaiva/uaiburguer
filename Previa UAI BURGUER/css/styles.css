@@ -1,0 +1,489 @@
+/* =========================================================
+   UAI BURGUER — DESIGN SYSTEM RÚSTICO-MODERNO
+   Inspirado em: Hamburgueria Tradi (hamburgueriatradi.com.br)
+   & Identidade Visual Oficial @uaiburguergyn (Goiânia - GO)
+   ========================================================= */
+
+:root {
+  --background: 15 20% 5%;
+  --foreground: 30 15% 90%;
+  --card: 15 15% 9%;
+  --card-foreground: 30 15% 90%;
+  --popover: 15 15% 9%;
+  --popover-foreground: 30 15% 90%;
+  --primary: 4 65% 38%;
+  --primary-hover: 4 70% 44%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 20 50% 22%;
+  --secondary-foreground: 30 15% 90%;
+  --muted: 15 12% 14%;
+  --muted-foreground: 20 8% 58%;
+  --accent: 28 78% 48%;
+  --accent-foreground: 0 0% 100%;
+  --border: 15 12% 17%;
+  --radius: 0.25rem;
+
+  --font-heading: "Bebas Neue", Impact, sans-serif;
+  --font-body: "Roboto", system-ui, -apple-system, sans-serif;
+
+  --gradient-hero: linear-gradient(
+    180deg,
+    hsla(15, 20%, 5%, 0.25) 0%,
+    hsla(15, 20%, 5%, 0.78) 68%,
+    hsl(15, 20%, 5%) 100%
+  );
+  --gradient-red: linear-gradient(135deg, hsl(4, 65%, 38%), hsl(28, 78%, 48%));
+  --shadow-glow: 0 0 45px hsla(4, 65%, 38%, 0.42);
+  --shadow-glow-sm: 0 8px 28px hsla(4, 65%, 38%, 0.32);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Textura sutil de fundo igual à Tradi */
+.bg-noise-pattern {
+  background-image: radial-gradient(rgba(234, 230, 225, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
+.bg-gradient-brand {
+  background: var(--gradient-red);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+.section-padding {
+  padding: 5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6.5rem 2rem;
+  }
+}
+
+/* ---------- Navbar Fixa ---------- */
+.site-navbar {
+  background: linear-gradient(180deg, rgba(15, 11, 10, 0.85) 0%, rgba(15, 11, 10, 0) 100%);
+  transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-navbar.scrolled {
+  background-color: hsla(15, 20%, 5%, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid hsl(var(--border));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsla(30, 15%, 90%, 0.82);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: hsl(var(--accent));
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--gradient-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Botões Padrão Tradi ---------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.2rem;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  background-color: hsl(var(--primary-hover));
+  box-shadow: var(--shadow-glow-sm);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid hsla(30, 15%, 90%, 0.22);
+  color: hsl(var(--foreground));
+  border-radius: 0.2rem;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline:hover {
+  border-color: hsl(var(--primary));
+  color: hsl(var(--accent));
+  background-color: hsla(4, 65%, 38%, 0.08);
+}
+
+/* ---------- Cards do Cardápio & Unidades (.menu-card da Tradi) ---------- */
+.menu-card {
+  border-radius: 0.35rem;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  padding: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-card:hover {
+  border-color: hsl(var(--primary));
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+/* ---------- Indicador de Scroll no Hero ---------- */
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.55;
+  }
+}
+
+.scroll-dot {
+  animation: scrollBounce 1.6s infinite ease-in-out;
+}
+
+/* ---------- Animação Suave de Entrada ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---------- Carrossel de Fotos do Cardápio ---------- */
+.carousel-slide {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.03);
+  transition: opacity 0.55s ease, transform 0.65s ease;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.carousel-thumb {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  opacity: 0.42;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.carousel-thumb:hover {
+  opacity: 0.78;
+}
+
+.carousel-thumb.active {
+  opacity: 1;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
+}
+
+/* ---------- Abas de Categoria Estilo Tradi ---------- */
+.cat-pill {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.2rem;
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.cat-pill:hover {
+  color: hsl(var(--foreground));
+  border-color: hsla(4, 65%, 38%, 0.45);
+}
+
+.cat-pill.active {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  box-shadow: var(--shadow-glow-sm);
+}
+
+/* ---------- Seletores de Ponto / Entrega / Pagamento ---------- */
+.choice-card {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.choice-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-card > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.7rem 0.6rem;
+  border-radius: 0.3rem;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  transition: all 0.2s ease;
+}
+
+.choice-card small {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: hsl(var(--muted-foreground));
+  margin-top: 2px;
+}
+
+.choice-card input:checked + span {
+  background-color: hsla(4, 65%, 38%, 0.22);
+  border-color: hsl(var(--primary));
+  color: hsl(var(--foreground));
+  box-shadow: inset 0 0 0 1px hsl(var(--primary));
+}
+
+.choice-card input:checked + span small {
+  color: hsla(30, 15%, 90%, 0.8);
+}
+
+/* ---------- Linha de Adicional no Modal ---------- */
+.addon-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.addon-item:hover {
+  background-color: hsla(15, 12%, 14%, 0.7);
+}
+
+.addon-item input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.addon-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 0.2rem;
+  border: 1.5px solid hsl(var(--muted-foreground));
+  display: inline-grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.addon-item input:checked + .addon-check {
+  background-color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  color: #ffffff;
+}
+
+.addon-item input:checked + .addon-check::after {
+  content: "✓";
+}
+
+/* ---------- Inputs de Formulário ---------- */
+.tradi-input {
+  width: 100%;
+  background-color: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25rem;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: hsl(var(--foreground));
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tradi-input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.tradi-input:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsla(4, 65%, 38%, 0.25);
+}
+
+.tradi-input.invalid {
+  border-color: #ef4444;
+}
+
+/* ---------- Scrollbars Ocultas em Barras Horizontais ---------- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* ---------- Modal Centralizado ---------- */
+.modal {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .modal {
+    align-items: center;
+    padding: 1rem;
+  }
+}
